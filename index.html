@@ -2,7 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">  <meta name="description" content="Invitación digital para la boda de Rubén y Cindy - 21 de marzo de 2026">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="description" content="Invitación digital para la boda de Rubén y Cindy - 21 de marzo de 2026">
   <meta name="theme-color" content="#b89555">
   
   <title>Rubén & Cindy - Nuestra Boda 💍</title>
@@ -81,15 +82,6 @@
       --z-popover: 1050;
       --z-tooltip: 1060;
     }
-    /* FIX PARA PREVENIR SCROLL HORIZONTAL */
-    * {
-      max-width: 100%;
-    }
-
-    img, video, iframe {
-      max-width: 100%;
-      height: auto;
-}
 
     /* Tema oscuro */
     [data-theme="dark"] {
@@ -119,9 +111,9 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
-       width: 100%;
+      width: 100%;
       max-width: 100%;
-      }
+    }
 
     body {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -179,11 +171,10 @@
     .container {
       width: 100%;
       max-width: min(var(--max-width), calc(100% - 2rem));
-      margin: -31px auto;
+      margin: -31px auto 0;
       padding: var(--space-xl) 1rem;
       position: relative;
       z-index: 1;
-      overflow-x: hidden;
     }
 
     /* ═══════════════════════════════════════════════════
@@ -198,6 +189,7 @@
       border-bottom: 1px solid rgba(184, 149, 85, 0.12);
       box-shadow: var(--shadow-sm);
       transition: all var(--transition-base) var(--ease-smooth);
+      width: 100%;
     }
 
     .navbar.scrolled {
@@ -213,6 +205,7 @@
       align-items: center;
       justify-content: space-between;
       gap: var(--space-lg);
+      width: 100%;
     }
 
     .navbar__brand {
@@ -241,6 +234,7 @@
       box-shadow: var(--shadow-md), 0 0 0 4px rgba(184, 149, 85, 0.1);
       position: relative;
       overflow: hidden;
+      flex-shrink: 0;
     }
 
     .navbar__logo::before {
@@ -259,6 +253,7 @@
       display: flex;
       flex-direction: column;
       gap: 2px;
+      min-width: 0;
     }
 
     .navbar__names {
@@ -322,6 +317,13 @@
       z-index: 1;
     }
 
+    .navbar__actions {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+      align-items: center;
+    }
+
     /* Botón de tema */
     .theme-toggle {
       padding: var(--space-sm);
@@ -334,11 +336,36 @@
       place-items: center;
       width: 40px;
       height: 40px;
+      flex-shrink: 0;
     }
 
     .theme-toggle:hover {
       transform: rotate(20deg) scale(1.1);
       box-shadow: var(--shadow-md);
+    }
+
+    /* Hamburguesa */
+    .hamburger {
+      display: none;
+      width: 40px;
+      height: 40px;
+      flex-direction: column;
+      justify-content: space-around;
+      background: var(--bg-card);
+      border: 1px solid rgba(184, 149, 85, 0.2);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      padding: 8px;
+      flex-shrink: 0;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--text-primary);
+      border-radius: 2px;
+      transition: all 0.3s;
     }
 
     /* ═══════════════════════════════════════════════════
@@ -352,6 +379,7 @@
       justify-content: center;
       overflow: hidden;
       margin-bottom: var(--space-3xl);
+      width: 100%;
     }
 
     .hero__background {
@@ -386,9 +414,10 @@
       z-index: 2;
       text-align: center;
       color: var(--text-inverse);
-      padding: var(--space-2xl);
+      padding: var(--space-2xl) var(--space-md);
       max-width: 900px;
       animation: fadeInUp 1s var(--ease-smooth);
+      width: 100%;
     }
 
     @keyframes fadeInUp {
@@ -407,7 +436,7 @@
       backdrop-filter: blur(20px) saturate(180%);
       border-radius: var(--radius-xl);
       border: 1px solid rgba(255, 255, 255, 0.18);
-      padding: var(--space-2xl);
+      padding: var(--space-2xl) var(--space-md);
       box-shadow: var(--shadow-xl);
       position: relative;
       overflow: hidden;
@@ -443,7 +472,7 @@
 
     .hero__names {
       font-family: 'Great Vibes', cursive;
-      font-size: clamp(3.5rem, 10vw, 7rem);
+      font-size: clamp(3rem, 10vw, 7rem);
       line-height: 0.9;
       margin: var(--space-md) 0;
       text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
@@ -460,7 +489,7 @@
     }
 
     .hero__date {
-      font-size: 1.125rem;
+      font-size: clamp(0.875rem, 2.5vw, 1.125rem);
       letter-spacing: 0.15em;
       text-transform: uppercase;
       margin: var(--space-lg) 0;
@@ -471,7 +500,7 @@
     .hero__verse {
       max-width: 600px;
       margin: var(--space-xl) auto;
-      font-size: 1rem;
+      font-size: clamp(0.938rem, 2vw, 1rem);
       line-height: 1.8;
       font-style: italic;
       font-family: 'Cormorant Garamond', serif;
@@ -556,6 +585,7 @@
       width: 20px;
       height: 20px;
       transition: transform var(--transition-base);
+      flex-shrink: 0;
     }
 
     .btn:hover .btn-icon {
@@ -576,6 +606,7 @@
       align-items: center;
       gap: var(--space-md);
       animation: fadeIn 1s 1.3s backwards;
+      width: 100%;
     }
 
     .music-player__button {
@@ -623,6 +654,7 @@
       border-radius: var(--radius-full);
       overflow: hidden;
       position: relative;
+      min-width: 60px;
     }
 
     .music-player__bar {
@@ -633,14 +665,13 @@
       box-shadow: 0 0 10px rgba(184, 149, 85, 0.6);
     }
 
-    /* Continúa en el siguiente mensaje... */
-
     /* ═══════════════════════════════════════════════════
        📦 CARDS Y SECCIONES
        ═══════════════════════════════════════════════════ */
     .section {
-      padding: var(--space-3xl) 0%;
+      padding: var(--space-3xl) 0;
       position: relative;
+      width: 100%;
     }
 
     .section-header {
@@ -669,8 +700,9 @@
       max-width: 650px;
       margin: 0 auto;
       color: var(--text-secondary);
-      font-size: 1.063rem;
+      font-size: clamp(0.938rem, 2vw, 1.063rem);
       line-height: 1.8;
+      padding: 0 1rem;
     }
 
     .card {
@@ -682,6 +714,7 @@
       position: relative;
       overflow: hidden;
       transition: all var(--transition-base);
+      width: 100%;
     }
 
     .card::before {
@@ -707,11 +740,12 @@
       grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
       gap: var(--space-lg);
       margin: var(--space-xl) 0;
+      width: 100%;
     }
 
     .countdown-item {
       text-align: center;
-      padding: var(--space-xl);
+      padding: var(--space-xl) var(--space-sm);
       background: linear-gradient(135deg, var(--bg-glass), var(--bg-card));
       border-radius: var(--radius-lg);
       border: 1px solid rgba(184, 149, 85, 0.2);
@@ -741,7 +775,7 @@
     }
 
     .countdown-number {
-      font-size: 3rem;
+      font-size: clamp(2rem, 6vw, 3rem);
       font-weight: 700;
       color: var(--color-secondary);
       display: block;
@@ -764,10 +798,11 @@
       display: grid;
       gap: var(--space-xl);
       align-items: start;
+      width: 100%;
     }
 
     .grid-2 {
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
     }
 
     .grid-sidebar {
@@ -792,6 +827,7 @@
       border: 1px solid rgba(184, 149, 85, 0.2);
       height: 100%;
       min-height: 400px;
+      width: 100%;
     }
 
     .image-frame img {
@@ -831,6 +867,7 @@
       background: var(--color-primary);
       box-shadow: 0 0 0 4px rgba(184, 149, 85, 0.2);
       animation: pulse 2s ease-in-out infinite;
+      flex-shrink: 0;
     }
 
     @keyframes pulse {
@@ -844,7 +881,7 @@
 
     .location-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
+      font-size: clamp(1.25rem, 3vw, 1.5rem);
       font-weight: 600;
       margin-bottom: var(--space-sm);
       color: var(--text-primary);
@@ -933,6 +970,7 @@
       padding: var(--space-lg);
       margin-top: var(--space-lg);
       border-left: 4px solid var(--color-primary);
+      word-break: break-word;
     }
 
     .bank-details p {
@@ -954,12 +992,14 @@
       gap: var(--space-md);
       align-items: center;
       margin-top: var(--space-xl);
+      width: 100%;
     }
 
     .divider {
       height: 1px;
       background: linear-gradient(90deg, transparent, rgba(184, 149, 85, 0.3), transparent);
       margin: var(--space-xl) 0;
+      width: 100%;
     }
 
     /* ═══════════════════════════════════════════════════
@@ -967,11 +1007,12 @@
        ═══════════════════════════════════════════════════ */
     .footer {
       text-align: center;
-      padding: var(--space-2xl) 0;
+      padding: var(--space-2xl) var(--space-md);
       color: var(--text-muted);
       font-size: 0.875rem;
       border-top: 1px solid rgba(184, 149, 85, 0.1);
       margin-top: var(--space-3xl);
+      width: 100%;
     }
 
     .footer-heart {
@@ -984,58 +1025,6 @@
       0%, 100% { transform: scale(1); }
       10%, 30% { transform: scale(1.1); }
       20%, 40% { transform: scale(1); }
-    }
-
-    /* ═══════════════════════════════════════════════════
-       📱 RESPONSIVE - MOBILE
-       ═══════════════════════════════════════════════════ */
-    @media (max-width: 768px) {
-      :root {
-        --space-xl: 1.5rem;
-        --space-2xl: 2rem;
-        --space-3xl: 2.5rem;
-      }
-
-      .navbar__container {
-        flex-direction: column;
-        padding: var(--space-md);
-      }
-
-      .navbar__nav {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .nav-link {
-        font-size: 0.813rem;
-        padding: var(--space-sm) var(--space-md);
-      }
-
-      .hero {
-        min-height: 600px;
-      }
-
-      .hero__names {
-        font-size: clamp(2.5rem, 12vw, 4rem);
-      }
-
-      .hero__card {
-        padding: var(--space-lg);
-      }
-
-      .music-player {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .countdown {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .btn {
-        width: 100%;
-        justify-content: center;
-      }
     }
 
     /* ═══════════════════════════════════════════════════
@@ -1063,158 +1052,188 @@
         transform: none;
       }
     }
+
+    /* ═══════════════════════════════════════════════════
+       📱 MOBILE MENU
+       ═══════════════════════════════════════════════════ */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      z-index: 10000;
+    }
+
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-menu__panel {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: min(340px, 85vw);
+      background: var(--bg-card);
+      box-shadow: var(--shadow-xl);
+      border-left: 1px solid rgba(184, 149, 85, 0.15);
+      padding: 16px;
+      transform: translateX(110%);
+      transition: transform 0.28s ease;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.open .mobile-menu__panel {
+      transform: translateX(0);
+    }
+
+    .mobile-menu__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .mobile-menu__title {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .mobile-menu__close {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(184, 149, 85, 0.2);
+      background: var(--bg-secondary);
+      cursor: pointer;
+      color: var(--text-primary);
+      font-size: 1.5rem;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .mobile-menu__link {
+      display: block;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: var(--radius-lg);
+      text-decoration: none;
+      color: var(--text-primary);
+      border: 1px solid rgba(184, 149, 85, 0.12);
+      background: linear-gradient(135deg, var(--bg-glass), var(--bg-card));
+      transition: all 0.2s;
+    }
+
+    .mobile-menu__link:active {
+      transform: scale(0.98);
+    }
+
+    /* ═══════════════════════════════════════════════════
+       📱 RESPONSIVE - MOBILE
+       ═══════════════════════════════════════════════════ */
     @media (max-width: 768px) {
-  /* Ocultar los links “píldoras” originales */
-  .navbar__nav { 
-    display: none !important; 
-  }
+      :root {
+        --space-xl: 1.5rem;
+        --space-2xl: 2rem;
+        --space-3xl: 2.5rem;
+      }
 
-  /* Asegurar que el drawer quede por encima */
-  .mobile-menu {
-    z-index: 10000 !important;
-  }
-}
+      /* Navbar mobile fix */
+      .navbar__container {
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 10px 12px;
+      }
 
-/* Drawer overlay */
-.mobile-menu {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-  backdrop-filter: blur(8px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-}
+      .navbar__nav {
+        display: none !important;
+      }
 
-.mobile-menu.open {
-  opacity: 1;
-  pointer-events: auto;
-}
+      .navbar__brand {
+        flex: 1;
+        min-width: 0;
+      }
 
-.mobile-menu__panel {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: min(340px, 88vw);
-  background: var(--bg-card);
-  box-shadow: var(--shadow-xl);
-  border-left: 1px solid rgba(184, 149, 85, 0.15);
-  padding: 16px;
-  transform: translateX(110%);
-  transition: transform 0.28s ease;
-}
+      .navbar__info {
+        min-width: 0;
+      }
 
-.mobile-menu.open .mobile-menu__panel {
-  transform: translateX(0);
-}
+      .navbar__names {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 0.95rem;
+      }
 
-.mobile-menu__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
+      .navbar__date {
+        display: none;
+      }
 
-.mobile-menu__title {
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-}
+      .navbar__logo {
+        width: 48px;
+        height: 48px;
+        font-size: 1rem;
+      }
 
-.mobile-menu__close {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-full);
-  border: 1px solid rgba(184, 149, 85, 0.2);
-  background: var(--bg-secondary);
-  cursor: pointer;
-  color: var(--text-primary);
-}
+      .hamburger {
+        display: flex;
+      }
 
-.mobile-menu__link {
-  display: block;
-  padding: 12px 12px;
-  margin-top: 10px;
-  border-radius: var(--radius-lg);
-  text-decoration: none;
-  color: var(--text-primary);
-  border: 1px solid rgba(184, 149, 85, 0.12);
-  background: linear-gradient(135deg, var(--bg-glass), var(--bg-card));
-}
-@media (max-width: 768px) {
-  .navbar__container{
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;   /* CLAVE: evita 2 filas */
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 10px 12px;
-  }
+      .hero__card {
+        padding: var(--space-lg) var(--space-md);
+      }
 
-  .navbar__nav{ display:none !important; }
+      .music-player {
+        flex-direction: column;
+        text-align: center;
+      }
 
-  .navbar__brand{
-    flex: 1;
-    min-width: 0; /* permite recorte */
-  }
+      .music-player__progress {
+        width: 100%;
+      }
 
-  .navbar__info{ min-width: 0; }
+      .countdown {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-md);
+      }
 
-  .navbar__names{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 0.95rem;
-  }
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
 
-  /* Opcional: oculta la fecha para que quepa perfecto */
-  .navbar__date{ display: none; }
+      .container {
+        padding: var(--space-lg) 0.75rem;
+      }
 
-  .navbar__actions{
-    display: flex;
-    gap: 8px;
-    flex-shrink: 0;
-    align-items: center;
-  }
+      .card {
+        padding: var(--space-lg);
+      }
+    }
 
-  .hamburger{ display: grid;
-  display: none;
-  width: 40px;
-  height: 40px;
-  flex-direction: column;
-  justify-content: space-around;
-  background: var(--bg-card);
-  border: 1px solid rgba(184, 149, 85, 0.2);
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  padding: 8px;
-  flex-shrink: 0;
-}
+    /* Fix para botones secundarios */
+    .btn-secondary {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border-color: rgba(184, 149, 85, 0.3);
+      backdrop-filter: none;
+    }
 
-.hamburger span {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background: var(--text-primary);
-  border-radius: 2px;
-  transition: all 0.3s;
-} }
-
-
-.btn-secondary{
-  background: var(--bg-secondary);
-  color: var(--text-primary);
-  border-color: rgba(184, 149, 85, 0.3);
-  backdrop-filter: none;
-}
-
-.btn-secondary:hover{
-  background: var(--bg-card);
-  border-color: rgba(184, 149, 85, 0.5);
-}
+    .btn-secondary:hover {
+      background: var(--bg-card);
+      border-color: rgba(184, 149, 85, 0.5);
+    }
 
   </style>
 </head>
@@ -1305,7 +1324,7 @@
         
         <blockquote class="hero__verse">
           "Y sobre todas estas cosas, vestíos de amor, que es el vínculo perfecto"
-          <cite class="hero__verse-ref">— Colosenses 3:14
+          <cite class="hero__verse-ref">— Colosenses 3:14</cite>
         </blockquote>
 
         <div class="hero__actions">
@@ -1403,12 +1422,6 @@
 
           <div style="display: flex; gap: var(--space-md); flex-wrap: wrap;">
             <a href="#rsvp" class="btn btn-primary">Confirmar Ahora</a>
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                <line x1="16" y1="2" x2="16" y2="6"/>
-                <line x1="8" y1="2" x2="8" y2="6"/>
-                <line x1="3" y1="10" x2="21" y2="10"/>
-              </svg>
-            </button>
           </div>
         </div>
 
@@ -1589,7 +1602,7 @@
             <p>🆔 V-26.165.514</p>
             <p>🏦 Banesco</p>
             <p>📱 0412-6789465</p>
-            <p>💵Efectivo: El dia del evento. </p>
+            <p>💵 Efectivo: El dia del evento.</p>
           </div>
         </div>
       </div>
@@ -1599,50 +1612,50 @@
          ✉️ CONFIRMACIÓN RSVP
          ═══════════════════════════════════════════════════ -->
     <section id="rsvp" class="section reveal">
-  <div class="section-header">
-    <p class="section-label">Confirmación</p>
-    <h2 class="section-title">¿Nos Acompañas?</h2>
-    <p class="section-description">
-      Agradecemos confirmar tu asistencia. Este día es especial para nosotros, 
-      y más aún si tú estás presente.
-    </p>
-  </div>
+      <div class="section-header">
+        <p class="section-label">Confirmación</p>
+        <h2 class="section-title">¿Nos Acompañas?</h2>
+        <p class="section-description">
+          Agradecemos confirmar tu asistencia. Este día es especial para nosotros, 
+          y más aún si tú estás presente.
+        </p>
+      </div>
 
-  <div class="card" style="text-align: center; max-width: 600px; margin: 0 auto;">
-    <div class="rsvp-actions">
+      <div class="card" style="text-align: center; max-width: 600px; margin: 0 auto;">
+        <div class="rsvp-actions">
 
-      <!-- Formulario -->
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf9Ag8FrBGJzPxuKAMH6AF1MCA1LeJgRNDwh6JNTCjwNPXSGg/viewform"
-         target="_blank"
-         rel="noopener noreferrer"
-         class="btn btn-primary">
-        Confirmar por Formulario
-        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M9 18l6-6-6-6"/>
-        </svg>
-      </a>
+          <!-- Formulario -->
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSf9Ag8FrBGJzPxuKAMH6AF1MCA1LeJgRNDwh6JNTCjwNPXSGg/viewform"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="btn btn-primary">
+            Confirmar por Formulario
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </a>
 
-      <!-- WhatsApp -->
-      <a href="https://wa.me/584126789465"
-         id="whatsappLink"
-         class="btn btn-secondary"
-         target="_blank"
-         rel="noopener noreferrer">
-        Confirmar por WhatsApp
-        <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
-        </svg>
-      </a>
+          <!-- WhatsApp -->
+          <a href="https://wa.me/584126789465"
+             id="whatsappLink"
+             class="btn btn-secondary"
+             target="_blank"
+             rel="noopener noreferrer">
+            Confirmar por WhatsApp
+            <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
+            </svg>
+          </a>
 
-    </div>
+        </div>
 
-    <div class="divider"></div>
+        <div class="divider"></div>
 
-    <p style="color: var(--text-muted); font-size: 0.875rem;">
-      "Lugar reservado exclusivamente para ti"
-    </p>
-  </div>
-</section>
+        <p style="color: var(--text-muted); font-size: 0.875rem;">
+          "Lugar reservado exclusivamente para ti"
+        </p>
+      </div>
+    </section>
 
 
     <!-- ═══════════════════════════════════════════════════
@@ -1666,8 +1679,47 @@
     // 📅 CONFIGURACIÓN
     // ═══════════════════════════════════════════════════
     const WEDDING_DATE = new Date('2026-03-21T15:00:00');
-    const WHATSAPP_NUMBER = '584126789465'; // Cambia este número
+    const WHATSAPP_NUMBER = '584126789465';
     const WHATSAPP_MESSAGE = 'Hola! Confirmo mi asistencia a la boda de Rubén & Cindy. Mi nombre es: ____ y asistiré con ___ persona(s).';
+
+    // ═══════════════════════════════════════════════════
+    // 🍔 MENÚ MÓVIL
+    // ═══════════════════════════════════════════════════
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeMobileMenu = document.getElementById('closeMobileMenu');
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu__link');
+
+    function openMobileMenu() {
+      mobileMenu.classList.add('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'true');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenuFn() {
+      mobileMenu.classList.remove('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    hamburgerBtn?.addEventListener('click', openMobileMenu);
+    closeMobileMenu?.addEventListener('click', closeMobileMenuFn);
+    
+    // Cerrar al hacer click fuera del panel
+    mobileMenu?.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) {
+        closeMobileMenuFn();
+      }
+    });
+
+    // Cerrar al hacer click en un link
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        closeMobileMenuFn();
+      });
+    });
 
     // ═══════════════════════════════════════════════════
     // 🎵 REPRODUCTOR DE AUDIO
@@ -1699,7 +1751,6 @@
       }
     });
 
-    // Actualizar barra de progreso
     audioPlayer?.addEventListener('timeupdate', () => {
       if (audioPlayer.duration) {
         const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
@@ -1707,7 +1758,6 @@
       }
     });
 
-    // Reset cuando termina
     audioPlayer?.addEventListener('ended', () => {
       progressBar.style.width = '0%';
     });
@@ -1743,53 +1793,8 @@
       secondsElement.textContent = String(seconds).padStart(2, '0');
     }
 
-    // Actualizar cada segundo
     updateCountdown();
     setInterval(updateCountdown, 1000);
-
-    // ═══════════════════════════════════════════════════
-    // 📅 AGREGAR AL CALENDARIO
-    // ═══════════════════════════════════════════════════
-    document.getElementById('addToCalendar')?.addEventListener('click', () => {
-      const startDate = new Date(WEDDING_DATE);
-      const endDate = new Date(WEDDING_DATE.getTime() + (4 * 60 * 60 * 1000)); // 4 horas después
-
-      const formatDate = (date) => {
-        return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-      };
-
-      const icsContent = `BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//Boda Rubén y Cindy//ES
-CALSCALE:GREGORIAN
-METHOD:PUBLISH
-BEGIN:VEVENT
-UID:${Date.now()}@wedding-invitation
-DTSTAMP:${formatDate(new Date())}
-DTSTART:${formatDate(startDate)}
-DTEND:${formatDate(endDate)}
-SUMMARY:Boda de Rubén & Cindy 💍
-DESCRIPTION:¡Nos casamos! Te esperamos para celebrar este día especial.\\n\\nCeremonia: Iglesia Tabernáculo Restauración\\nRecepción: Vista Bella Grill
-LOCATION:Barquisimeto, Venezuela
-STATUS:CONFIRMED
-BEGIN:VALARM
-TRIGGER:-P1D
-DESCRIPTION:Recordatorio: Boda de Rubén & Cindy mañana
-ACTION:DISPLAY
-END:VALARM
-END:VEVENT
-END:VCALENDAR`;
-
-      const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = 'boda-ruben-cindy.ics';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      
-      setTimeout(() => URL.revokeObjectURL(link.href), 100);
-    });
 
     // ═══════════════════════════════════════════════════
     // 💬 WHATSAPP LINK
@@ -1801,7 +1806,7 @@ END:VCALENDAR`;
     }
 
     // ═══════════════════════════════════════════════════
-    // 🎬 ANIMACIONES DE ENTRADA (INTERSECTION OBSERVER)
+    // 🎬 ANIMACIONES DE ENTRADA
     // ═══════════════════════════════════════════════════
     const revealElements = document.querySelectorAll('.reveal');
     
@@ -1822,7 +1827,7 @@ END:VCALENDAR`;
     });
 
     // ═══════════════════════════════════════════════════
-    // 🧭 SMOOTH SCROLL PARA NAVEGACIÓN
+    // 🧭 SMOOTH SCROLL
     // ═══════════════════════════════════════════════════
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
@@ -1847,7 +1852,6 @@ END:VCALENDAR`;
     // 🎨 NAVBAR SCROLL EFFECT
     // ═══════════════════════════════════════════════════
     const navbar = document.querySelector('.navbar');
-    let lastScrollTop = 0;
 
     window.addEventListener('scroll', () => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -1857,8 +1861,6 @@ END:VCALENDAR`;
       } else {
         navbar.classList.remove('scrolled');
       }
-      
-      lastScrollTop = scrollTop;
     });
 
     // ═══════════════════════════════════════════════════
@@ -1868,7 +1870,6 @@ END:VCALENDAR`;
     const themeIcon = document.getElementById('themeIcon');
     const html = document.documentElement;
 
-    // Cargar tema guardado
     const savedTheme = localStorage.getItem('wedding-theme') || 'light';
     html.setAttribute('data-theme', savedTheme);
     themeIcon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
@@ -1883,17 +1884,7 @@ END:VCALENDAR`;
     });
 
     // ═══════════════════════════════════════════════════
-    // 🎉 CONFETTI AL CARGAR (OPCIONAL)
-    // ═══════════════════════════════════════════════════
-    window.addEventListener('load', () => {
-      // Pequeño delay para que las animaciones inicien correctamente
-      setTimeout(() => {
-        console.log('💍 Invitación cargada exitosamente');
-      }, 500);
-    });
-
-    // ═══════════════════════════════════════════════════
-    // 📱 DETECTAR MOBILE PARA AJUSTES ESPECÍFICOS
+    // 📱 DETECTAR MOBILE
     // ═══════════════════════════════════════════════════
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
@@ -1902,42 +1893,15 @@ END:VCALENDAR`;
     }
 
     // ═══════════════════════════════════════════════════
-    // ⚡ LAZY LOADING PARA IMÁGENES
-    // ═══════════════════════════════════════════════════
-    if ('loading' in HTMLImageElement.prototype) {
-      const images = document.querySelectorAll('img[loading="lazy"]');
-      images.forEach(img => {
-        img.src = img.src;
-      });
-    } else {
-      // Fallback para navegadores antiguos
-      const script = document.createElement('script');
-      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
-      document.body.appendChild(script);
-    }
-
-    // ═══════════════════════════════════════════════════
     // 🔒 PREVENIR COMPORTAMIENTOS NO DESEADOS
     // ═══════════════════════════════════════════════════
-    
-    // Prevenir zoom excesivo en mobile
     document.addEventListener('gesturestart', (e) => {
       e.preventDefault();
     });
 
-    // Log de errores para debugging
-    window.addEventListener('error', (e) => {
-      console.error('Error detectado:', e.message);
-    });
-
-    // ═══════════════════════════════════════════════════
-    // ✅ MENSAJE DE CONSOLA PERSONALIZADO
-    // ═══════════════════════════════════════════════════
     console.log('%c💍 Invitación de Boda - Rubén & Cindy', 'font-size: 20px; font-weight: bold; color: #b89555;');
     console.log('%c21 de Marzo, 2026', 'font-size: 16px; color: #4f6a5b;');
     console.log('%c¡Nos vemos en la boda! 🎉', 'font-size: 14px; font-style: italic;');
   </script>
 </body>
 </html>
-
-
